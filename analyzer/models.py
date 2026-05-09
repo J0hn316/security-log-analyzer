@@ -12,3 +12,12 @@ class LogEvent:
     ip_address: str
     status: str
     user_agent: str
+
+
+@dataclass(frozen=True)
+class Finding:
+    rule_id: str
+    title: str
+    severity: str
+    description: str
+    related_events: list[LogEvent]
