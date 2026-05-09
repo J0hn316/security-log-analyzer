@@ -10,3 +10,4 @@ timestamp,event_type,username,ip_address,status,user_agent
 2026-02-01T10:02:00Z,login,charlie,10.0.0.9,failed,Firefox
 2026-02-01T10:03:00Z,login,diana,10.0.0.9,failed,Firefox
 2026-02-01T23:30:00Z,login,admin,10.0.0.20,success,UnknownBot
+bad_timestamp,login,john,10.0.0.5,failed,Chrome
