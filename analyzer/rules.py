@@ -162,15 +162,44 @@ def detect_off_hours_logins(
     return findings
 
 
-def run_all_rules(events: list[LogEvent]) -> list[Finding]:
+def run_all_rules(
+    events: list[LogEvent],
+    *,
+    failed_threshold: int = 5,
+    spray_threshold: int = 4,
+    success_after_failure_threshold: int = 3,
+    business_start: int = 8,
+    business_end: int = 18,
+) -> list[Finding]:
     """
     Run all detection rules and return combined findings.
     """
     findings: list[Finding] = []
 
-    findings.extend(detect_repeated_failed_logins(events))
-    findings.extend(detect_password_spraying(events))
-    findings.extend(detect_success_after_failures(events))
-    findings.extend(detect_off_hours_logins(events))
+    findings.extend(
+        detect_repeated_failed_logins(
+            events,
+            threshold=failed_threshold,
+        )
+    )
+    findings.extend(
+        detect_password_spraying(
+            events,
+            threshold=spray_threshold,
+        )
+    )
+    findings.extend(
+        detect_success_after_failures(
+            events,
+            failure_threshold=success_after_failure_threshold,
+        )
+    )
+    findings.extend(
+        detect_off_hours_logins(
+            events,
+            business_start=business_start,
+            business_end=business_end,
+        )
+    )
 
     return findings
