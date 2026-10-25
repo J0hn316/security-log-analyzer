@@ -62,7 +62,7 @@ Text report or JSON export
 ### 1. Clone the repository
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/J0hn316/security-log-analyzer
 cd security-log-analyzer
 ```
 
